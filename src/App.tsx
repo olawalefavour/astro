@@ -15,8 +15,14 @@ function Layout() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {!isHome && <Navbar />}
-      <main className={`mx-auto flex min-h-[70vh] max-w-7xl flex-col px-6 ${isHome ? '' : 'py-12'} sm:px-8 lg:px-10`}>
+      <Navbar />
+      <main
+        className={
+          isHome
+            ? 'flex min-h-[70vh] flex-col'
+            : 'mx-auto flex min-h-[70vh] max-w-7xl flex-col px-6 py-12 pt-32 sm:px-8 lg:px-10'
+        }
+      >
         <Outlet />
       </main>
       <Footer />

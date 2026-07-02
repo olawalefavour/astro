@@ -1,4 +1,3 @@
-import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useEffect, useMemo, useRef, useState } from 'react';
@@ -10,8 +9,7 @@ const galleryPhotos = photos;
 
 export default function Home() {
   const [activeImage, setActiveImage] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  const pauseTimeout = useRef<number | null>(null);
+  const [isPaused] = useState(false);
 
   useEffect(() => {
     if (isPaused) return undefined;
@@ -24,26 +22,9 @@ export default function Home() {
 
   const heroImage = useMemo(() => heroPhotos[activeImage], [activeImage]);
 
-  const handleManualNav = (direction: 'prev' | 'next') => {
-    setIsPaused(true);
-    if (pauseTimeout.current) {
-      window.clearTimeout(pauseTimeout.current);
-    }
-    pauseTimeout.current = window.setTimeout(() => {
-      setIsPaused(false);
-    }, 8000);
-
-    setActiveImage((prev) => {
-      if (direction === 'next') {
-        return (prev + 1) % heroPhotos.length;
-      }
-      return (prev - 1 + heroPhotos.length) % heroPhotos.length;
-    });
-  };
-
   return (
     <div className="w-full">
-      <section className="relative h-screen w-screen overflow-hidden bg-black text-foreground">
+      <section className="relative min-h-screen w-full overflow-hidden bg-black text-foreground">
         <motion.img
           key={heroImage.id}
           src={heroImage.src}
@@ -56,60 +37,9 @@ export default function Home() {
         />
         <div className="absolute inset-0 bg-background/30" />
 
-        <div className="absolute inset-x-0 top-0 z-20 px-6 pt-6 sm:px-8 lg:px-10">
-          <div className="mx-auto flex max-w-7xl items-center justify-between">
-            <nav className="hidden items-center gap-8 text-[0.7rem] font-medium uppercase tracking-[0.32em] text-foreground md:flex">
-              <Link to="/" className="transition hover:text-accent" style={{ fontFamily: 'Inter, sans-serif' }}>
-                Home
-              </Link>
-              <Link to="/about" className="transition hover:text-accent" style={{ fontFamily: 'Inter, sans-serif' }}>
-                About
-              </Link>
-              <Link to="/portfolio" className="transition hover:text-accent" style={{ fontFamily: 'Inter, sans-serif' }}>
-                Portfolio <span className="text-accent">+</span>
-              </Link>
-            </nav>
-
-            <div className="hidden text-center md:block">
-              <p className="text-sm uppercase tracking-[0.45em] text-foreground/90" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-                ASTRO
-              </p>
-              <p className="text-sm uppercase tracking-[0.45em] text-foreground/90" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-                PHOTOGRAPHY
-              </p>
-            </div>
-
-            <nav className="hidden items-center gap-8 text-[0.7rem] font-medium uppercase tracking-[0.32em] text-foreground md:flex">
-              <Link to="/testimonials" className="transition hover:text-accent" style={{ fontFamily: 'Inter, sans-serif' }}>
-                Testimonials
-              </Link>
-              <Link to="/contact" className="transition hover:text-accent" style={{ fontFamily: 'Inter, sans-serif' }}>
-                Contact
-              </Link>
-            </nav>
-          </div>
-        </div>
-
-        <div className="absolute inset-x-0 top-1/2 z-20 flex items-center justify-between px-4 sm:px-8 lg:px-10">
-          <button
-            type="button"
-            onClick={() => handleManualNav('prev')}
-            className="rounded-full border border-white/20 bg-black/30 p-3 text-white transition hover:border-accent hover:bg-black/50 hover:text-accent"
-          >
-            <ChevronLeft size={24} />
-          </button>
-          <button
-            type="button"
-            onClick={() => handleManualNav('next')}
-            className="rounded-full border border-white/20 bg-black/30 p-3 text-white transition hover:border-accent hover:bg-black/50 hover:text-accent"
-          >
-            <ChevronRight size={24} />
-          </button>
-        </div>
-
-        <div className="relative z-20 mx-auto flex h-full max-w-7xl items-end justify-center px-6 pb-20 text-center sm:px-8 lg:px-10">
-          <div className="w-full max-w-4xl">
-            <h1 className="text-6xl font-semibold leading-none text-foreground sm:text-7xl md:text-8xl lg:text-[6rem]" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+        <div className="relative z-20 mx-auto flex h-full min-h-screen max-w-7xl items-center justify-center px-6 text-center sm:px-8 lg:px-10">
+          <div className="w-full max-w-3xl">
+            <h1 className="mx-auto max-w-3xl text-center text-5xl font-semibold leading-[0.95] text-foreground sm:text-6xl md:text-[5.5rem] lg:text-[6rem]" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
               ASTRO
               <br />
               PHOTOGRAPHY

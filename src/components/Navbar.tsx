@@ -34,11 +34,11 @@ export default function Navbar() {
     return location.pathname.startsWith(to);
   };
 
-  const navClass = scrolled ? 'bg-background/95 py-3 shadow-black/10' : 'bg-transparent py-6';
+  const navClass = scrolled ? 'py-3 shadow-black/10' : 'py-6';
 
   return (
     <motion.header
-      className={`sticky top-0 z-50 border-b border-white/10 ${navClass}`}
+      className={`fixed inset-x-0 top-0 z-50 border-b border-white/10 ${navClass}`}
       initial={false}
       animate={{ backgroundColor: scrolled ? 'rgba(10, 11, 13, 0.95)' : 'rgba(10, 11, 13, 0)' }}
       transition={{ duration: 0.25, ease: 'easeOut' }}
