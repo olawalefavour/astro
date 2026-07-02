@@ -1,13 +1,14 @@
 import { ArrowUpRight, Aperture, Compass, Mail, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SectionDivider from '../components/SectionDivider';
+import { photos } from '../data/photos';
 
 export default function About() {
   return (
     <div className="w-full overflow-hidden">
       <section className="relative flex min-h-[50vh] items-center justify-center overflow-hidden bg-black text-center text-foreground">
         <img
-          src="/src/assets/photos/photo3.jpeg"
+          src={photos[2].src}
           alt="Starry mountain scene"
           className="absolute inset-0 h-full w-full object-cover"
         />
@@ -45,7 +46,7 @@ export default function About() {
         <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
           <div className="overflow-hidden rounded-3xl">
             <img
-              src="/src/assets/photos/photo4.jpeg"
+              src={photos[3].src}
               alt="Photographer at work under stars"
               className="h-full w-full object-cover grayscale"
             />
@@ -134,7 +135,7 @@ export default function About() {
       </section>
 
       <section className="relative mt-16 overflow-hidden">
-        <img src="/src/assets/photos/photo7.jpeg" alt="Aurora background CTA" className="absolute inset-0 h-full w-full object-cover" />
+        <img src={photos[6].src} alt="Aurora background CTA" className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-background/75" />
         <div className="relative mx-auto flex min-h-[320px] max-w-7xl flex-col items-center justify-center px-6 py-20 text-center text-foreground sm:px-8 lg:px-10">
           <h2 className="text-4xl font-semibold sm:text-5xl" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
